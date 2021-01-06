@@ -22,20 +22,18 @@
     <q-footer>
       <q-tabs>
         <q-route-tab
-          to="/"
-          icon="list"
-          label="Todo"
-        />
-        <q-route-tab
-          to="/settings"
-          icon="settings"
-          label="Settings"
+          v-for="link in essentialLinks"
+          :key="link.title"
+          :to="link.link"
+          :icon="link.icon"
+          :label="link.title"
         />
       </q-tabs>
     </q-footer>
 
     <q-drawer
       v-model="leftDrawerOpen"
+      :breakpoint="767"
       show-if-above
       bordered
       content-class="bg-grey-1"
@@ -73,7 +71,7 @@ const linksData = [
   {
     title: 'Settings',
     icon: 'settings',
-    link: '#/settings'
+    link: '/settings'
   }
 ];
 
@@ -88,3 +86,11 @@ export default {
   }
 }
 </script>
+
+<style>
+  @media screen and (min-width: 768px) {
+    .q-footer {
+      display: none;
+    }
+  }
+</style>
